@@ -2,17 +2,36 @@
 
 window.addEventListener("load", function() {
 
-    let form = document.querySelector("form");
+  require("./scriptHelper.js");
+   
+  let form = document.querySelector("form");
+
     form.addEventListener("submit", function(event){
         let pilotNameInput = document.querySelector("input[name=pilotName]");
         let copilotNameInput = document.querySelector("input[name=copilotName]");
         let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
         let cargoMassInput = document.querySelector("input[name=cargoMass]");
-   if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput === ""){
-    alert("Please input data into all fields.");
-    event.preventDefault();
-   }
+
+       /* if(pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === ""){
+            alert("Please input data into all fields.");
+        
+            event.preventDefault();
+           }*/
+           
+           if (validateInput(pilotNameInput.value) === "Empty" || validateInput(copilotNameInput.value) === "Empty" || validateInput(fuelLevelInput.value) === "Empty" || validateInput(cargoMassInput.value) === "Empty"){
+            alert("Please input data into all fields.");
+        
+            event.preventDefault();
+           }
+        
     })
+
+ /*   form.addEventListener("submit", function(event){
+        if (validate.validateInput(fuelLevelInput.value) === true){
+            alert("Not a number. Please input a number.");
+        event.preventDefault();}
+        }
+    )*/
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
