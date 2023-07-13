@@ -2,36 +2,39 @@
 require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-        <><h2>Mission Destination</h2><ol>
+       let div = document.getElementById("missionTarget");
+       div.innerHTML = `
+       <h2>Mission Destination</h2><ol>
         <li>Name: ${name} </li>
         <li>Diameter: ${diameter} </li>
         <li>Star: ${star}</li>
         <li>Distance from Earth: ${distance} </li>
         <li>Number of Moons: ${moons} </li>
-    </ol><img src="" /></>}
+    </ol><img src="${imageUrl}" /></>`
+}
 
 
 
 function validateInput(testInput){
-if (testInput = ""){
-    return 'Empty';
-} else if (!isNaN(Number(testInput))){
-    return 'Is a number';
-} else {
-    return 'Not a number';
-}
+    if (testInput === ""){
+        return 'Empty';
+    } else if (isNaN(Number(testInput))){
+        return 'Not a number';
+    } else if (!isNaN(Number(testInput))) {
+        return 'Is a number';
+    }
     
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
-let pilotStatus = document.getElementbyId("pilotStatus");
-let copilotStatus = document.getElementbyId("copilotStatus");
-let fuelStatus = document.getElementbyId("fuelStatus");
-let cargoStatus = document.getElementbyId("cargoStatus");
-let launchStatus = document.getElementbyId("launchStatus");
+let pilotStatus = document.getElementById("pilotStatus");
+let copilotStatus = document.getElementById("copilotStatus");
+let fuelStatus = document.getElementById("fuelStatus");
+let cargoStatus = document.getElementById("cargoStatus");
+let launchStatus = document.getElementById("launchStatus");
 
-if (pilot === 'Empty' || copilot === 'Empty' || fuelLevel === 'Empty' || cargoMass === 'Empty'){
+if (validateInput(pilot) === 'Empty' || validateInput(copilot) === 'Empty' || validateInput(fuelLevel) === 'Empty' || validateInput(cargoLevel) === 'Empty'){
     alert("Please input data into all fields.");
 }
 
@@ -66,16 +69,15 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch(`https://handlers.education.launchcode.org/static/planets.json`).then( function(response) {
-      return response.json;  });
+    return response.json();
+    });
 
     return planetsReturned;
 }
 
 function pickPlanet(planets) {
-    let planetIndex = Math.floor(Math.random*length);
-    for(planetIndex = 0; planetIndex < planets.length; planetIndex++){
-        planetIndex++;
-    }
+    let planetIndex = Math.floor(Math.random()*planets.length);
+    return planets[planetIndex];
 }
 
 
