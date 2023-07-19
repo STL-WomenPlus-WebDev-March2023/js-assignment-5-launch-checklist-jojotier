@@ -50,13 +50,18 @@ if (validateInput(fuelLevel) === 'Not a number'){
     list.style.visibility = 'hidden';
 }
 
-if (Number(fuelLevel) < 10000){
+if (Number(fuelLevel) < 10000 && Number(cargoLevel) > 10000){
     list.style.visibility = 'visible';
-    fuelStatus.innerHTML = 'You have too little fuel to launch!';
+    fuelStatus.innerHTML = 'You have too little fuel to launch! Please raise fuel to above 10000 liters.';
+    cargoStatus.innerHTML = 'You have too much weight in the cargo hold to launch! Please drop the weight to below 10000 kilograms.';
     launchStatus.innerHTML = '<span style="color:#C7254E">Shuttle is not ready to launch.</span>';
-} else if (Number(cargoLevel > 10000)){
+} else if (Number(fuelLevel) > 10000 && Number(cargoLevel) > 10000){
     list.style.visibility = 'visible';
-    cargoStatus.innerHTML = 'You have too much weight in the cargo hold to launch!';
+    cargoStatus.innerHTML = 'You have too much weight in the cargo hold to launch! Please drop weight to below 10000 kilograms.';
+    launchStatus.innerHTML = '<span style="color:#C7254E">Shuttle is not ready to launch.</span>';
+} else if (Number(fuelLevel) < 10000 && Number(cargoLevel) < 10000){
+    list.style.visibility = 'visible';
+    fuelStatus.innerHTML = 'You have too little fuel to launch! Please raise fuel level to above 10000 liters.';
     launchStatus.innerHTML = '<span style="color:#C7254E">Shuttle is not ready to launch.</span>';
 } else {
     list.style.visibility = 'visible';
