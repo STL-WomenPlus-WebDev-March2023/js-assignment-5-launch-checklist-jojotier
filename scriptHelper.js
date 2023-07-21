@@ -52,26 +52,28 @@ if (validateInput(fuelLevel) === 'Not a number'){
 
 if (Number(fuelLevel) < 10000 && Number(cargoLevel) > 10000){
     list.style.visibility = 'visible';
-    fuelStatus.innerHTML = 'You have too little fuel to launch! Please raise fuel to above 10000 liters.';
-    cargoStatus.innerHTML = 'You have too much weight in the cargo hold to launch! Please drop the weight to below 10000 kilograms.';
     launchStatus.style.color = "#C7254E";
     launchStatus.innerHTML = '<span>Shuttle is not ready to launch.</span>';
+    fuelStatus.innerHTML = '<span>You have too little fuel to launch! Please raise fuel to above 10000 liters.</span>';
+    cargoStatus.innerHTML = '<span>You have too much weight in the cargo hold to launch! Please drop the weight to below 10000 kilograms.</span>';
 } else if (Number(fuelLevel) > 10000 && Number(cargoLevel) > 10000){
     list.style.visibility = 'visible';
-    cargoStatus.innerHTML = 'You have too much weight in the cargo hold to launch! Please drop weight to below 10000 kilograms.';
-    fuelStatus.innerHTML = 'Fuel level high enough for launch';
     launchStatus.style.color = "#C7254E";
     launchStatus.innerHTML = '<span>Shuttle is not ready to launch.</span>';
+    fuelStatus.innerHTML = '<span>Fuel level high enough for launch</span>';
+    cargoStatus.innerHTML = '<span>You have too much weight in the cargo hold to launch! Please drop weight to below 10000 kilograms.</span>';
 } else if (Number(fuelLevel) < 10000 && Number(cargoLevel) < 10000){
     list.style.visibility = 'visible';
-    fuelStatus.innerHTML = 'You have too little fuel to launch! Please raise fuel level to above 10000 liters.';
-    cargoStatus.innerHTML = 'Cargo mass low enough for launch';
     launchStatus.style.color = "#C7254E";
     launchStatus.innerHTML = '<span>Shuttle is not ready to launch.</span>';
+    fuelStatus.innerHTML = '<span>You have too little fuel to launch! Please raise fuel level to above 10000 liters.</span>';
+    cargoStatus.innerHTML = '<span>Cargo mass low enough for launch<span>';
 } else {
     list.style.visibility = 'visible';
     launchStatus.style.color = '#419F6A';
     launchStatus.innerHTML = '<span>Shuttle ready for launch!</span>';
+    fuelStatus.innerHTML = '<span>Fuel level high enough for launch</span>';
+    cargoStatus.innerHTML = '<span>Cargo mass low enough for launch<span>';
 }
 
 }
